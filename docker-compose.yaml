@@ -20,3 +20,13 @@ services:
     volumes:
       - ./scripts/create_topics.sh:/create_topics.sh
     entrypoint: ["bash", "/create_topics.sh"]
+
+  producer:
+    build: ./producer
+    depends_on:
+      pulsar:
+        condition: service_healthy
+    environment:
+      PULSAR_SERVICE_URL: pulsar://pulsar:6650
+    ports:
+      - "5000:5000"

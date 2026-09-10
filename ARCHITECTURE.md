@@ -4,7 +4,7 @@
 
 Real-time pipeline that ingests chat prompts, classifies each as `benign` or
 `jailbreak` using a transformer model, and joins each message with its
-prediction for downstream consumption. Rebuilt from an earlier prototype.
+prediction for downstream consumption.
 
 ## 2. Components
 
@@ -36,7 +36,7 @@ flowchart LR
 ## 4. Message contracts
 
 Every message carries a `schema_version` so consumers can evolve
-independently of producers — the original prototype had no such field.
+independently of producers.
 
 **`messages.raw`** (produced by `producer`)
 ```json
@@ -84,9 +84,7 @@ independently of producers — the original prototype had no such field.
 
 ## 5. Non-functional decisions
 
-Explicitly scoping what this build does and doesn't handle, and why —
-this table is the main deliverable of "architecture-first."
-
+Explicitly scoping what this build does and doesn't handle, and why.
 | Concern              | Decision for this build                                                        | Rationale |
 |-----------------------|----------------------------------------------------------------------------------|-----------|
 | Broker HA             | Single standalone Pulsar node                                                    | Local/single-machine learning project; multi-broker cluster is a config change, not a redesign — documented as future work, not built |

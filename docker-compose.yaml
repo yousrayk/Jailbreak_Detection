@@ -42,6 +42,6 @@ services:
       PULSAR_SERVICE_URL: pulsar://pulsar:6650
       MODEL_PATH: /model
     volumes:
-      # Bind-mounted from the original prototype repo instead of committed
-      # into this repo — keeps the ~47MB weights out of git history.
-      - "C:/Users/PC/Downloads/Jailbreak-Detection-main/saved_models/albert_production:/model:ro"
+      # Weights aren't committed to git (see .gitignore) — copy them into
+      # ./models/albert_production first; see README's "Model weights" section.
+      - "./models/albert_production:/model:ro"

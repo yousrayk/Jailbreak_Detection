@@ -2,3 +2,7 @@
 **/.venv
 **/__pycache__
 **/.pytest_cache
+
+# Model weights are large binaries and don't belong in git history —
+# copy them locally per README's "Model weights" section.
+/models/

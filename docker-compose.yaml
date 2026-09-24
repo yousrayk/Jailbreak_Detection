@@ -30,3 +30,18 @@ services:
       PULSAR_SERVICE_URL: pulsar://pulsar:6650
     ports:
       - "5000:5000"
+
+  consumer_prediction:
+    build: ./consumer_prediction
+    depends_on:
+      pulsar:
+        condition: service_healthy
+      topic-setup:
+        condition: service_completed_successfully
+    environment:
+      PULSAR_SERVICE_URL: pulsar://pulsar:6650
+      MODEL_PATH: /model
+    volumes:
+      # Bind-mounted from the original prototype repo instead of committed
+      # into this repo — keeps the ~47MB weights out of git history.
+      - "C:/Users/PC/Downloads/Jailbreak-Detection-main/saved_models/albert_production:/model:ro"

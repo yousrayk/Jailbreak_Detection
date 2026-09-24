@@ -12,7 +12,10 @@ TOPICS=(
 )
 
 for topic in "${TOPICS[@]}"; do
-  if bin/pulsar-admin --admin-url "$ADMIN_URL" topics list public/default | grep -qx "$topic"; then
+  # "topics list" returns partition names (e.g. "...-partition-0"), not the
+  # base topic name, so it never matches here — use the partitioned-topics
+  # listing instead, which does return base names.
+  if bin/pulsar-admin --admin-url "$ADMIN_URL" topics list-partitioned-topics public/default | grep -qx "$topic"; then
     echo "Topic already exists: $topic"
   else
     echo "Creating topic: $topic"

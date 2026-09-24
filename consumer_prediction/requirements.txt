@@ -1,0 +1,5 @@
+pulsar-client
+apache-beam
+transformers
+torch
+pytest

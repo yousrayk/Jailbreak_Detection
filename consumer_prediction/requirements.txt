@@ -1,0 +1,5 @@
+pulsar-client==3.13.0
+apache-beam==2.76.0
+transformers==5.17.0
+torch==2.14.0
+pytest==9.1.1
